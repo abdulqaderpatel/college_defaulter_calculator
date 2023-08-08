@@ -1,4 +1,4 @@
-package com.example.basic_recycler_view;
+package com.example.basic_recycler_view.student_list_for_attendance;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,18 +8,13 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
+import com.example.basic_recycler_view.R;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
@@ -28,9 +23,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     Context context;
     ArrayList<User> userArrayList;
 
-    public UserAdapter(Context context, ArrayList<User> userArrayList) {
+    String database;
+
+    public UserAdapter(Context context, ArrayList<User> userArrayList,String database) {
         this.context = context;
         this.userArrayList = userArrayList;
+        this.database=database;
     }
 
     @NonNull
@@ -51,7 +49,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.id.setText(userArrayList.get(position).id);
 
 
-            db.collection("TOC").document(String.valueOf(position + 1)).update("present", FieldValue.increment(1));
+            db.collection(database).document(String.valueOf(position + 1)).update("present", FieldValue.increment(1));
 
 
         holder.isChecked.setOnClickListener(new View.OnClickListener() {
@@ -59,12 +57,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             public void onClick(View view) {
                 if(holder.isChecked.isChecked())
                 {
-                    db.collection("TOC").document(String.valueOf(position+1)).update("present",FieldValue.increment(1));
-                    db.collection("TOC").document(String.valueOf(position+1)).update("absent",FieldValue.increment(-1));
+                    db.collection(database).document(String.valueOf(position+1)).update("present",FieldValue.increment(1));
+                    db.collection(database).document(String.valueOf(position+1)).update("absent",FieldValue.increment(-1));
                 }
                 else{
-                    db.collection("TOC").document(String.valueOf(position+1)).update("absent",FieldValue.increment(1));
-                    db.collection("TOC").document(String.valueOf(position+1)).update("present",FieldValue.increment(-1));
+                    db.collection(database).document(String.valueOf(position+1)).update("absent",FieldValue.increment(1));
+                    db.collection(database).document(String.valueOf(position+1)).update("present",FieldValue.increment(-1));
 
                 }
 

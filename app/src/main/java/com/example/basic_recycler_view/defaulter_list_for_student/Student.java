@@ -1,4 +1,4 @@
-package com.example.basic_recycler_view;
+package com.example.basic_recycler_view.defaulter_list_for_student;
 
 public class Student {
     String id,name;

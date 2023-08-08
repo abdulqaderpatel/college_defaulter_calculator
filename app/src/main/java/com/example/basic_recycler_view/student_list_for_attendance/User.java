@@ -1,4 +1,4 @@
-package com.example.basic_recycler_view;
+package com.example.basic_recycler_view.student_list_for_attendance;
 
 
 public class User {

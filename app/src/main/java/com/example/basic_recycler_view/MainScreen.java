@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.basic_recycler_view.defaulter_list_for_student.DefaulterListActivity;
+import com.example.basic_recycler_view.student_list_for_attendance.StudentListActivity;
+import com.example.basic_recycler_view.subjects.SubjectList;
+
 public class MainScreen extends AppCompatActivity {
     Button take,view;
 
@@ -20,7 +24,7 @@ public class MainScreen extends AppCompatActivity {
         take.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            Intent intent=new Intent(getApplicationContext(), StudentListActivity.class);
+            Intent intent=new Intent(getApplicationContext(), SubjectList.class);
             startActivity(intent);
             }
         });
@@ -28,7 +32,7 @@ public class MainScreen extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(),DefaulterListActivity.class);
+                Intent intent=new Intent(getApplicationContext(), DefaulterListActivity.class);
                 startActivity(intent);
             }
         });

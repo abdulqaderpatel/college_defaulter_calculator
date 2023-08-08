@@ -1,4 +1,4 @@
-package com.example.basic_recycler_view;
+package com.example.basic_recycler_view.defaulter_list_for_student;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.basic_recycler_view.R;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -17,10 +19,14 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
     Context context;
     ArrayList<Student> studentArrayList;
 
-    public StudentAdapter(Context context, ArrayList<Student> studentArrayList) {
+    String database;
+
+    public StudentAdapter(Context context, ArrayList<Student> studentArrayList,String database) {
         this.context = context;
         this.studentArrayList = studentArrayList;
+        this.database=database;
     }
+
 
     @NonNull
     @Override
