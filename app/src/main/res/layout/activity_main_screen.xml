@@ -1,66 +1,89 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scrollview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-
-    <LinearLayout
-        android:id="@+id/take_attendance"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="#f00">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Take attendance"
-            android:textColor="#000" />
-    </LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
 
     <LinearLayout
-        android:id="@+id/check_attendance"
+        android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="#ff0">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
+
+        <RelativeLayout
+            android:id="@+id/take_attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/take_attendance" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check attendance"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+
+                android:layout_centerInParent="true"/>
+
+
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/check_attendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/check_attendance" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/add_students"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Check attendance"
-            android:textColor="#000" />
-    </LinearLayout>
+            android:layout_height="wrap_content">
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/add_student" />
 
 
-    <LinearLayout
-        android:id="@+id/add_subjects"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="#00f">
+        </RelativeLayout>
 
-        <TextView
+        <RelativeLayout
+            android:id="@+id/add_subjects"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Add subjects"
-            android:textColor="#000" />
+            android:layout_height="wrap_content">
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/add_subject" />
+
+
+        </RelativeLayout>
+
+
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/add_students"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="#0f0">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Add students"
-            android:textColor="#000" />
-    </LinearLayout>
-
-
-</LinearLayout>
+</ScrollView>
