@@ -17,13 +17,15 @@ import java.util.ArrayList;
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder> {
 
     Context context;
-    ArrayList<Student> studentArrayList;
+    ArrayList<Information> informationArrayList;
+    ArrayList<Attendance> attendanceArrayList;
 
     String database;
 
-    public StudentAdapter(Context context, ArrayList<Student> studentArrayList,String database) {
+    public StudentAdapter(Context context,ArrayList<Information> informationArrayList,ArrayList<Attendance> attendanceArrayList,String database) {
         this.context = context;
-        this.studentArrayList = studentArrayList;
+        this.attendanceArrayList=attendanceArrayList;
+        this.informationArrayList=informationArrayList;
         this.database=database;
     }
 
@@ -37,16 +39,16 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(studentArrayList.get(position).name);
-        holder.id.setText(studentArrayList.get(position).id);
-        holder.present.setText(String.valueOf(studentArrayList.get(position).present));
-        holder.absent.setText(String.valueOf(studentArrayList.get(position).absent));
-        holder.total.setText(String.valueOf(new DecimalFormat("0.#").format(studentArrayList.get(position).present * 100 / (studentArrayList.get(position).present + studentArrayList.get(position).absent)) + "%"));
+        holder.name.setText(informationArrayList.get(position).name);
+        holder.id.setText(informationArrayList.get(position).id);
+        holder.present.setText(String.valueOf(attendanceArrayList.get(position).present));
+        holder.absent.setText(String.valueOf(attendanceArrayList.get(position).absent));
+        holder.total.setText(String.valueOf(new DecimalFormat("0.#").format(attendanceArrayList.get(position).present * 100 / (attendanceArrayList.get(position).present + attendanceArrayList.get(position).absent)) + "%"));
     }
 
     @Override
     public int getItemCount() {
-        return studentArrayList.size();
+        return informationArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

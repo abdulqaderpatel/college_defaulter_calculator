@@ -23,12 +23,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     Context context;
     ArrayList<User> userArrayList;
 
-    String database;
+    String subjects;
 
-    public UserAdapter(Context context, ArrayList<User> userArrayList,String database) {
+    public UserAdapter(Context context, ArrayList<User> userArrayList,String subjects) {
         this.context = context;
         this.userArrayList = userArrayList;
-        this.database=database;
+        this.subjects=subjects;
     }
 
     @NonNull
@@ -49,7 +49,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.id.setText(userArrayList.get(position).id);
 
 
-            db.collection(database).document(String.valueOf(position + 1)).update("present", FieldValue.increment(1));
+            db.collection("Subjects").document(subjects).collection("Students").document(String.valueOf(position+1)).update("present", FieldValue.increment(1));
 
 
         holder.isChecked.setOnClickListener(new View.OnClickListener() {
@@ -57,12 +57,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             public void onClick(View view) {
                 if(holder.isChecked.isChecked())
                 {
-                    db.collection(database).document(String.valueOf(position+1)).update("present",FieldValue.increment(1));
-                    db.collection(database).document(String.valueOf(position+1)).update("absent",FieldValue.increment(-1));
+                    db.collection("Subjects").document(subjects).collection("Students").document(String.valueOf(position+1)).update("present",FieldValue.increment(1));
+                    db.collection("Subjects").document(subjects).collection("Students").document(String.valueOf(position+1)).update("absent",FieldValue.increment(-1));
                 }
                 else{
-                    db.collection(database).document(String.valueOf(position+1)).update("absent",FieldValue.increment(1));
-                    db.collection(database).document(String.valueOf(position+1)).update("present",FieldValue.increment(-1));
+                    db.collection("Subjects").document(subjects).collection("Students").document(String.valueOf(position+1)).update("absent",FieldValue.increment(1));
+                    db.collection("Subjects").document(subjects).collection("Students").document(String.valueOf(position+1)).update("present",FieldValue.increment(-1));
 
                 }
 
