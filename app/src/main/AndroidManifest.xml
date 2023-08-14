@@ -33,7 +33,7 @@
             android:name=".defaulter_list_for_student.DefaulterListActivity"
             android:exported="false" />
         <activity
-            android:name=".MainScreen"
+            android:name=".Home.MainScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

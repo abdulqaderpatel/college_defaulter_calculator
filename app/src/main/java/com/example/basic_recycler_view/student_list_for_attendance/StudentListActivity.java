@@ -18,9 +18,12 @@ import com.example.basic_recycler_view.student_list_for_attendance.User;
 import com.example.basic_recycler_view.student_list_for_attendance.UserAdapter;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
@@ -28,6 +31,8 @@ public class StudentListActivity extends AppCompatActivity {
     ArrayList<User> userArrayList = new ArrayList<>();
     RecyclerView recyclerView;
     UserAdapter userAdapter;
+
+    ArrayList<Boolean> booleanArrayList;
 
 
     Button add, cancel;
@@ -53,8 +58,9 @@ public class StudentListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
         userArrayList = new ArrayList<User>();
+        booleanArrayList=new ArrayList<Boolean>();
 
-        userAdapter = new UserAdapter(this, userArrayList, subject);
+        userAdapter = new UserAdapter(this, userArrayList, subject,booleanArrayList);
         recyclerView.setAdapter(userAdapter);
 
         EventChangeListener();
@@ -62,6 +68,20 @@ public class StudentListActivity extends AppCompatActivity {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                for(int i=0;i<booleanArrayList.size();i++)
+                {
+                    if(booleanArrayList.get(i))
+                    {
+                        db.collection("Subjects").document(subject).collection("Students").document(String.valueOf(i+1)).update("present", FieldValue.increment(-1));
+
+                    }
+                   else
+                    {
+                        db.collection("Subjects").document(subject).collection("Students").document(String.valueOf(i+1)).update("absent", FieldValue.increment(-1));
+
+                    }
+                }
                 finish();
             }
         });
