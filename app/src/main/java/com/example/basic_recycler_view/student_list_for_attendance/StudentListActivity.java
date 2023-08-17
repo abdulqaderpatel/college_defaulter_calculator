@@ -58,9 +58,9 @@ public class StudentListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         db = FirebaseFirestore.getInstance();
         userArrayList = new ArrayList<User>();
-        booleanArrayList=new ArrayList<Boolean>();
+        booleanArrayList = new ArrayList<Boolean>();
 
-        userAdapter = new UserAdapter(this, userArrayList, subject,booleanArrayList);
+        userAdapter = new UserAdapter(this, userArrayList, subject, booleanArrayList);
         recyclerView.setAdapter(userAdapter);
 
         EventChangeListener();
@@ -69,19 +69,22 @@ public class StudentListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                for(int i=0;i<booleanArrayList.size();i++)
-                {
-                    if(booleanArrayList.get(i))
-                    {
-                        db.collection("Subjects").document(subject).collection("Students").document(String.valueOf(i+1)).update("present", FieldValue.increment(-1));
+                for (int i = 0; i < booleanArrayList.size(); i++) {
+                    if (booleanArrayList.get(i)) {
+                        db.collection("Subjects").document(subject).collection("Students").document(String.valueOf(i + 1)).update("present", FieldValue.increment(-1));
 
-                    }
-                   else
-                    {
-                        db.collection("Subjects").document(subject).collection("Students").document(String.valueOf(i+1)).update("absent", FieldValue.increment(-1));
+                    } else {
+                        db.collection("Subjects").document(subject).collection("Students").document(String.valueOf(i + 1)).update("absent", FieldValue.increment(-1));
 
                     }
                 }
+                finish();
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 finish();
             }
         });
