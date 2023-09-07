@@ -1,0 +1,72 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/add_student"
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:scaleType="fitXY"
+            android:alpha="0.7"
+            android:src="@drawable/add_student"
+            android:contentDescription="TODO">
+
+        </ImageView>
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Student"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/add_subject"
+            android:layout_width="match_parent"
+            android:layout_height="370dp"
+            android:scaleType="fitXY"
+            android:alpha="0.7"
+            android:src="@drawable/add_subject"
+            android:contentDescription="TODO">
+
+        </ImageView>
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Subject"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+</LinearLayout>

@@ -42,8 +42,16 @@ public class add_students extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         add.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                if (id.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Id cannot be empty", Toast.LENGTH_LONG).show();
+                }
+                else  if (name.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Name cannot be empty", Toast.LENGTH_LONG).show();
+                }
+                else{
                 Map<String, String> student = new HashMap<>();
                 student.put("name", name.getText().toString());
                 student.put("id", id.getText().toString());
@@ -52,6 +60,8 @@ public class add_students extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(getApplicationContext(), "Student successfully added", Toast.LENGTH_LONG).show();
+                        id.setText("");
+                        name.setText("");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -63,23 +73,22 @@ public class add_students extends AppCompatActivity {
                 db.collection("Subjects").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            List<String> list=new ArrayList<>();
-                            for(QueryDocumentSnapshot documentSnapshot:task.getResult())
-                            {
+                        if (task.isSuccessful()) {
+                            List<String> list = new ArrayList<>();
+                            for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 list.add(documentSnapshot.getId());
                             }
-                            for(int i=0;i<list.toArray().length;i++) {
-                                Map<String,Integer> attendance=new HashMap<>();
-                                attendance.put("present",0);
-                                attendance.put("absent",0);
+                            for (int i = 0; i < list.toArray().length; i++) {
+                                Map<String, Integer> attendance = new HashMap<>();
+                                attendance.put("present", 0);
+                                attendance.put("absent", 0);
                                 db.collection("Subjects").document(list.get(i)).collection("Students").document(id.getText().toString()).set(attendance);
                             }
                         }
                     }
                 });
 
-            }
+            }}
 
         });
     }

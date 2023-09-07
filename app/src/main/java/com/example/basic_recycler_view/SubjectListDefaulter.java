@@ -48,7 +48,7 @@ public class SubjectListDefaulter extends AppCompatActivity {
                         list.add(documentSnapshot.getId());
 
                     }
-                    Toast.makeText(getApplicationContext(), list.get(1),Toast.LENGTH_LONG).show();
+
 
                 }
                 ArrayAdapter<String> arr=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1 ,list);

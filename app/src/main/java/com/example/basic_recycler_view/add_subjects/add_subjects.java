@@ -42,42 +42,48 @@ public class add_subjects extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         add.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
-                Map<String, String> subjects = new HashMap<>();
-                subjects.put("subject",subject.getText().toString());
+                if (subject.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Id cannot be empty", Toast.LENGTH_LONG).show();
+                } else {
+                    Map<String, String> subjects = new HashMap<>();
+                    subjects.put("subject", subject.getText().toString());
 
-                db.collection("Subjects").document(subject.getText().toString()).set(subjects).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    db.collection("Subjects").document(subject.getText().toString()).set(subjects).addOnCompleteListener(new OnCompleteListener<Void>() {
 
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(getApplicationContext(), "Student successfully added", Toast.LENGTH_LONG).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Student with this id already exists", Toast.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            Toast.makeText(getApplicationContext(), "Subject successfully added", Toast.LENGTH_LONG).show();
+                            subject.setText("");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(getApplicationContext(), "Student with this id already exists", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-              db.collection("Students").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                  @Override
-                  public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                      if(task.isSuccessful()){
-                          List<String> list=new ArrayList<>();
-                          for(QueryDocumentSnapshot documentSnapshot:task.getResult())
-                          {
-                              list.add(documentSnapshot.getId());
-                          }
-                          for(int i=0;i<list.toArray().length;i++) {
-                              Map<String,Integer> attendance=new HashMap<>();
-                              attendance.put("present",0);
-                              attendance.put("absent",0);
-                              db.collection("Subjects").document(subject.getText().toString()).collection("Students").document(list.get(i)).set(attendance);
-                          }
-                      }
-                  }
-              });
+                    db.collection("Students").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                List<String> list = new ArrayList<>();
+                                for (QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                    list.add(documentSnapshot.getId());
+                                }
+                                for (int i = 0; i < list.toArray().length; i++) {
+                                    Map<String, Integer> attendance = new HashMap<>();
+                                    attendance.put("present", 0);
+                                    attendance.put("absent", 0);
+                                    db.collection("Subjects").document(subject.getText().toString()).collection("Students").document(list.get(i)).set(attendance);
+                                }
+                            }
+                        }
+                    });
+                }
             }
 
         });

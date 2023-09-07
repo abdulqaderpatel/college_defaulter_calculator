@@ -49,7 +49,7 @@ public class StudentListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         subject = intent.getStringExtra("subject");
-        Toast.makeText(this, subject, Toast.LENGTH_LONG).show();
+
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -85,6 +85,8 @@ public class StudentListActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Toast.makeText(getApplicationContext(),"Attendance taken successfully",Toast.LENGTH_LONG).show();
                 finish();
             }
         });
